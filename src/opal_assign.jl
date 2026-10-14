@@ -1,5 +1,3 @@
-using Serialization: serialize
-
 """
     opal_assign(opal, symbol, value; variables=nothing, missings=false, identifiers=nothing, id_name=nothing, updated_name=nothing, async=false)
 
@@ -222,7 +220,9 @@ end
 """
     opal_assign_data(opal, symbol, value; async=false)
 
-Assign a R object to a R symbol in the current R session, serialized in base64.
+Assign a R object to a R symbol in the current R session. The value is serialized as
+JSON and decoded in the R session with `jsonlite::fromJSON` (same approach as the Opal
+Python client, which exchanges data as JSON).
 
 # Arguments
 - `opal::OpalObject`: Opal connection object
@@ -231,15 +231,15 @@ Assign a R object to a R symbol in the current R session, serialized in base64.
 - `async::Bool=false`: R script is executed asynchronously within the session. If true, the value returned is the ID of the command to look for
 """
 function opal_assign_data(opal::OpalObject, symbol::String, value; async::Bool=false)
-    contentType = "application/x-rdata"
-    io = IOBuffer()
-    serialize(io, value)
-    body = base64encode(take!(io))
+    json = JSON.json(value)
+    encoded = base64encode(json)
+    body = "$symbol <- jsonlite::fromJSON(rawToChar(jsonlite::base64_dec('$encoded')))"
+    contentType = "application/x-rscript"
     query = Dict{String,Any}()
     if async
         query["async"] = "true"
     end
-    res = opal_post(
+    res = opal_put(
         opal,
         opal.context,
         "session",

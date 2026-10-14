@@ -30,10 +30,17 @@ include("../test_helpers.jl")
     symbols = opal_symbols(o)
     @test "expr" in symbols_list(symbols)
 
+    # assign a data frame: values are serialized as JSON and decoded with jsonlite
+    df = DataFrame(id=[1, 2, 3], name=["a", "b", "c"])
+    opal_assign_data(o, "dfdata", df)
+    symbols = opal_symbols(o)
+    @test "dfdata" in symbols_list(symbols)
+
     # remove symbols
     opal_rm(o, "hello")
     opal_rm(o, "D")
     opal_rm(o, "expr")
+    opal_rm(o, "dfdata")
     symbols = opal_symbols(o)
     @test "hello" ∉ symbols_list(symbols)
 
