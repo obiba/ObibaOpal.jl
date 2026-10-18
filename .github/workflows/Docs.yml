@@ -45,9 +45,9 @@ jobs:
         run: |
           julia --project=docs -e '
             using Documenter: DocMeta, doctest
-            using Opal
-            DocMeta.setdocmeta!(Opal, :DocTestSetup, :(using Opal); recursive=true)
-            doctest(Opal)'
+            using ObibaOpal
+            DocMeta.setdocmeta!(ObibaOpal, :DocTestSetup, :(using ObibaOpal); recursive=true)
+            doctest(ObibaOpal)'
       - name: Generate and deploy documentation
         run: julia --project=docs docs/make.jl
         env:

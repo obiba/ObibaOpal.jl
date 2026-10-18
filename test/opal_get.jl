@@ -1,4 +1,4 @@
-using Opal
+using ObibaOpal
 using Test
 
 @testset "login" begin

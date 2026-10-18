@@ -2,7 +2,7 @@
 # These tests require a live Opal server (set OPAL_TEST_URL to run)
 
 using Test
-using Opal
+using ObibaOpal
 using DataFrames
 include("../test_helpers.jl")
 
@@ -15,7 +15,7 @@ include("../test_helpers.jl")
     # Test successful login
     o = opal_login(; username=username, password=password, url=url)
 
-    @test isa(o, Opal.OpalObject)
+    @test isa(o, ObibaOpal.OpalObject)
     @test o.username == username
     @test o.url == url
     @test !isnothing(o.name)
@@ -39,7 +39,7 @@ end
 
     o = opal_login(; token=token, url=url)
 
-    @test isa(o, Opal.OpalObject)
+    @test isa(o, ObibaOpal.OpalObject)
     @test o.token == token
     @test o.url == url
     @test !isnothing(o.name)
@@ -53,7 +53,7 @@ end
 
     o = make_test_opal()
 
-    @test isa(o, Opal.OpalObject)
+    @test isa(o, ObibaOpal.OpalObject)
 
     # Logout should succeed
     opal_logout(o)
@@ -70,8 +70,8 @@ end
     o1 = make_test_opal()
     o2 = make_test_opal()
 
-    @test isa(o1, Opal.OpalObject)
-    @test isa(o2, Opal.OpalObject)
+    @test isa(o1, ObibaOpal.OpalObject)
+    @test isa(o2, ObibaOpal.OpalObject)
 
     # Logout multiple connections
     opal_logout([o1, o2])
@@ -126,7 +126,7 @@ end
     # Test multiple login/logout cycles
     for i in 1:3
         o = opal_login(; username=username, password=password, url=url)
-        @test isa(o, Opal.OpalObject)
+        @test isa(o, ObibaOpal.OpalObject)
 
         # Verify we can make a request
         projects = opal_get(o, "projects")
@@ -168,7 +168,7 @@ end
 
             # and restorable in a new session (Opal 4.5+; older servers
             # only warn)
-            if ismissing(o2.version) || Opal._versionCompare(o2, "4.5") >= 0
+            if ismissing(o2.version) || ObibaOpal._versionCompare(o2, "4.5") >= 0
                 opal_workspace_restore(o2, ws_id)
                 opal_session(o2)
                 symbols = opal_symbols(o2)

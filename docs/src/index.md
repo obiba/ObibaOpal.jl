@@ -1,20 +1,20 @@
-# Opal.jl
+# ObibaOpal.jl
 
-[![Build Status](https://github.com/obiba/Opal.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/obiba/Opal.jl/actions/workflows/CI.yml?query=branch%3Amain)
+[![Build Status](https://github.com/obiba/ObibaOpal.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/obiba/ObibaOpal.jl/actions/workflows/CI.yml?query=branch%3Amain)
 
-Opal.jl is a Julia client for [Opal](https://www.obiba.org/pages/products/opal/), a data warehouse application for biobanks and epidemiological studies.
+ObibaOpal.jl is a Julia client for [Opal](https://www.obiba.org/pages/products/opal/), a data warehouse application for biobanks and epidemiological studies.
 
 ## Installation
 
 ```julia
 using Pkg
-Pkg.add("Opal")
+Pkg.add("ObibaOpal")
 ```
 
 ## Quick Start
 
 ```julia
-using Opal
+using ObibaOpal
 
 # Login to Opal server
 opal = opal_login(

@@ -2,30 +2,30 @@
 # These tests focus on table-related logic without requiring a server
 
 using Test
-using Opal
+using ObibaOpal
 using JSON
 
 @testset "Table Function Signatures" begin
     # Test that table functions exist with correct signatures
-    @test isdefined(Opal, :opal_table)
-    @test isdefined(Opal, :opal_table_exists)
-    @test isdefined(Opal, :opal_table_create)
-    @test isdefined(Opal, :opal_table_delete)
-    @test isdefined(Opal, :opal_table_truncate)
-    @test isdefined(Opal, :opal_table_get)
+    @test isdefined(ObibaOpal, :opal_table)
+    @test isdefined(ObibaOpal, :opal_table_exists)
+    @test isdefined(ObibaOpal, :opal_table_create)
+    @test isdefined(ObibaOpal, :opal_table_delete)
+    @test isdefined(ObibaOpal, :opal_table_truncate)
+    @test isdefined(ObibaOpal, :opal_table_get)
 
     # Test method signatures
-    @test hasmethod(opal_table, (Opal.OpalObject, String, String))
-    @test hasmethod(opal_table_exists, (Opal.OpalObject, String, String))
-    @test hasmethod(opal_table_create, (Opal.OpalObject, String, String))
-    @test hasmethod(opal_table_delete, (Opal.OpalObject, String, String))
-    @test hasmethod(opal_table_truncate, (Opal.OpalObject, String, String))
-    @test hasmethod(opal_table_get, (Opal.OpalObject, String, String))
+    @test hasmethod(opal_table, (ObibaOpal.OpalObject, String, String))
+    @test hasmethod(opal_table_exists, (ObibaOpal.OpalObject, String, String))
+    @test hasmethod(opal_table_create, (ObibaOpal.OpalObject, String, String))
+    @test hasmethod(opal_table_delete, (ObibaOpal.OpalObject, String, String))
+    @test hasmethod(opal_table_truncate, (ObibaOpal.OpalObject, String, String))
+    @test hasmethod(opal_table_get, (ObibaOpal.OpalObject, String, String))
 end
 
 @testset "Table Metadata Parameters" begin
     # Test that opal_table accepts counts parameter
-    opal = Opal.OpalObject(
+    opal = ObibaOpal.OpalObject(
         name="test",
         url="https://opal-demo.obiba.org",
         username="admin",
@@ -39,16 +39,16 @@ end
 
     # The counts parameter should affect the query string
     # This will be validated in integration tests
-    @test hasmethod(opal_table, (Opal.OpalObject, String, String))
+    @test hasmethod(opal_table, (ObibaOpal.OpalObject, String, String))
 end
 
 @testset "Table Existence Check Logic" begin
     # Test that opal_table_exists accepts view parameter
-    @test hasmethod(opal_table_exists, (Opal.OpalObject, String, String))
+    @test hasmethod(opal_table_exists, (ObibaOpal.OpalObject, String, String))
 
     # The function should handle missing/nothing for view parameter
     # Testing the logic without server connection
-    opal = Opal.OpalObject(
+    opal = ObibaOpal.OpalObject(
         name="test",
         url="https://opal-demo.obiba.org",
         username="admin",
@@ -67,7 +67,7 @@ end
 
 @testset "Table Creation Logic" begin
     # Test table creation parameters
-    opal = Opal.OpalObject(
+    opal = ObibaOpal.OpalObject(
         name="test",
         url="https://opal-demo.obiba.org",
         username="admin",
@@ -108,7 +108,7 @@ end
 
 @testset "Table Deletion Logic" begin
     # Test silent parameter handling
-    @test hasmethod(opal_table_delete, (Opal.OpalObject, String, String))
+    @test hasmethod(opal_table_delete, (ObibaOpal.OpalObject, String, String))
 
     # The function should warn when silent=false and table doesn't exist
     # This will be tested in integration tests
@@ -117,7 +117,7 @@ end
 
 @testset "Table Truncation Logic" begin
     # Test that truncate only works on non-view tables
-    @test hasmethod(opal_table_truncate, (Opal.OpalObject, String, String))
+    @test hasmethod(opal_table_truncate, (ObibaOpal.OpalObject, String, String))
 
     # The function should warn if table is a view
     # This will be tested in integration tests
@@ -126,7 +126,7 @@ end
 
 @testset "Table Get Placeholder" begin
     # opal_table_get is not fully implemented
-    opal = Opal.OpalObject(
+    opal = ObibaOpal.OpalObject(
         name="test",
         url="https://opal-demo.obiba.org",
         username="admin",

@@ -1,12 +1,12 @@
 """
-Test helper functions for Opal.jl tests.
+Test helper functions for ObibaOpal.jl tests.
 
 This module provides utility functions for both unit and integration tests,
 including test skipping, test data generation, and mock Opal connections.
 """
 
 using Test
-using Opal
+using ObibaOpal
 using JSON
 
 """

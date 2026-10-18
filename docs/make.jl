@@ -1,20 +1,20 @@
 using Documenter
 using Documenter: Remotes
 
-using Opal
+using ObibaOpal
 
 makedocs(;
-    modules=[Opal],
+    modules=[ObibaOpal],
     authors="Hugo Solleder <hugo.solleder@epfl.ch> and contributors",
-    repo=Remotes.GitHub("obiba", "Opal.jl"),
-    sitename="Opal.jl",
+    repo=Remotes.GitHub("obiba", "ObibaOpal.jl"),
+    sitename="ObibaOpal.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://obiba.github.io/Opal.jl",
+        canonical="https://obiba.github.io/ObibaOpal.jl",
         assets=String[],
     ),
     warnonly=[:missing_docs],
     pages=["Home" => "index.md", "API Reference" => "api.md"],
 )
 
-deploydocs(; repo="github.com/obiba/Opal.jl", devbranch="main")
+deploydocs(; repo="github.com/obiba/ObibaOpal.jl", devbranch="main")

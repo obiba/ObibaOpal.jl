@@ -3,19 +3,19 @@
 # without requiring a server
 
 using Test
-using Opal
+using ObibaOpal
 using DataFrames
 
 @testset "Workspace Operations Logic" begin
-    @test hasmethod(opal_workspaces, (Opal.OpalObject,))
-    @test hasmethod(opal_workspace_rm, (Opal.OpalObject, String))
-    @test hasmethod(opal_workspace_save, (Opal.OpalObject,))
-    @test hasmethod(opal_workspace_restore, (Opal.OpalObject, String))
+    @test hasmethod(opal_workspaces, (ObibaOpal.OpalObject,))
+    @test hasmethod(opal_workspace_rm, (ObibaOpal.OpalObject, String))
+    @test hasmethod(opal_workspace_save, (ObibaOpal.OpalObject,))
+    @test hasmethod(opal_workspace_restore, (ObibaOpal.OpalObject, String))
 end
 
 @testset "Workspace Version Guard" begin
     # workspaces require Opal 2.6 or higher: guards warn instead of failing
-    opal = Opal.OpalObject(
+    opal = ObibaOpal.OpalObject(
         name="test",
         url="https://opal-demo.obiba.org",
         username="test-user",
@@ -26,7 +26,7 @@ end
     end
 
     # restore is not available for opal < 4.5: warn and return nothing
-    opal = Opal.OpalObject(
+    opal = ObibaOpal.OpalObject(
         name="test",
         url="https://opal-demo.obiba.org",
         username="test-user",
@@ -39,7 +39,7 @@ end
 
 @testset "Workspace RM Errors" begin
     # Missing user name raises an error before any request is made
-    opal = Opal.OpalObject(
+    opal = ObibaOpal.OpalObject(
         name="test",
         url="https://opal-demo.obiba.org",
         username="",

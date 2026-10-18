@@ -1,4 +1,4 @@
-# Utility functions for Opal.jl
+# Utility functions for ObibaOpal.jl
 # Translated from opalr/R/utils.R and opalr/R/opal.R
 
 using HTTP

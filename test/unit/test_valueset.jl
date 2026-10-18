@@ -2,14 +2,14 @@
 # These tests focus on function signatures and logic without requiring a server
 
 using Test
-using Opal
+using ObibaOpal
 using DataFrames
 
 @testset "Variables Operations Logic" begin
-    @test hasmethod(opal_variable, (Opal.OpalObject, String, String, String))
-    @test hasmethod(opal_variable_summary, (Opal.OpalObject, String, String, String))
-    @test hasmethod(opal_valueset, (Opal.OpalObject, String, String, String))
-    @test hasmethod(opal_variables, (Opal.OpalObject, String, String))
+    @test hasmethod(opal_variable, (ObibaOpal.OpalObject, String, String, String))
+    @test hasmethod(opal_variable_summary, (ObibaOpal.OpalObject, String, String, String))
+    @test hasmethod(opal_valueset, (ObibaOpal.OpalObject, String, String, String))
+    @test hasmethod(opal_variables, (ObibaOpal.OpalObject, String, String))
 end
 
 @testset "Attribute Values" begin

@@ -1,23 +1,23 @@
-# Opal.jl
+# ObibaOpal.jl
 
-[![Docs workflow Status](https://github.com/obiba/Opal.jl/actions/workflows/Docs.yml/badge.svg?branch=main)](https://github.com/obiba/Opal.jl/actions/workflows/Docs.yml?query=branch%3Amain)
-[![Test workflow status](https://github.com/obiba/Opal.jl/actions/workflows/Test.yml/badge.svg?branch=main)](https://github.com/obiba/Opal.jl/actions/workflows/Test.yml?query=branch%3Amain)
-[![Build Status](https://github.com/obiba/Opal.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/obiba/Opal.jl/actions/workflows/CI.yml?query=branch%3Amain)
+[![Docs workflow Status](https://github.com/obiba/ObibaOpal.jl/actions/workflows/Docs.yml/badge.svg?branch=main)](https://github.com/obiba/ObibaOpal.jl/actions/workflows/Docs.yml?query=branch%3Amain)
+[![Test workflow status](https://github.com/obiba/ObibaOpal.jl/actions/workflows/Test.yml/badge.svg?branch=main)](https://github.com/obiba/ObibaOpal.jl/actions/workflows/Test.yml?query=branch%3Amain)
+[![Build Status](https://github.com/obiba/ObibaOpal.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/obiba/ObibaOpal.jl/actions/workflows/CI.yml?query=branch%3Amain)
 [![Aqua QA](https://juliatesting.github.io/Aqua.jl/dev/assets/badge.svg)](https://github.com/JuliaTesting/Aqua.jl)
 
-Opal.jl is a Julia client for [Opal](https://www.obiba.org/pages/products/opal/), a data warehouse application for biobanks and epidemiological studies.
+ObibaOpal.jl is a Julia client for [Opal](https://www.obiba.org/pages/products/opal/), a data warehouse application for biobanks and epidemiological studies.
 
 ## Installation
 
 ```julia
 using Pkg
-Pkg.add("Opal")
+Pkg.add("ObibaOpal")
 ```
 
 ## Quick Start
 
 ```julia
-using Opal
+using ObibaOpal
 
 # Login to Opal server
 opal = opal_login(
@@ -35,7 +35,7 @@ opal_logout(opal)
 
 ## Testing
 
-Opal.jl includes comprehensive unit tests and integration tests.
+ObibaOpal.jl includes comprehensive unit tests and integration tests.
 
 ### Running Unit Tests Only
 

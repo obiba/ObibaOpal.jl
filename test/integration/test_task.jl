@@ -2,7 +2,7 @@
 # Requires a live Opal server (set OPAL_TEST_URL to run)
 
 using Test
-using Opal
+using ObibaOpal
 using DataFrames
 include("../test_helpers.jl")
 

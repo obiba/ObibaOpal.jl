@@ -2,22 +2,22 @@
 # These tests focus on session-related logic without requiring a server
 
 using Test
-using Opal
+using ObibaOpal
 
 @testset "Session Function Signatures" begin
     # Test that session functions exist with correct signatures
-    @test isdefined(Opal, :opal_session)
-    @test isdefined(Opal, :opal_session_get)
-    @test isdefined(Opal, :opal_session_exists)
-    @test isdefined(Opal, :opal_session_running)
-    @test isdefined(Opal, :opal_session_delete)
+    @test isdefined(ObibaOpal, :opal_session)
+    @test isdefined(ObibaOpal, :opal_session_get)
+    @test isdefined(ObibaOpal, :opal_session_exists)
+    @test isdefined(ObibaOpal, :opal_session_running)
+    @test isdefined(ObibaOpal, :opal_session_delete)
 
     # Test that functions have correct method signatures
-    @test hasmethod(opal_session, (Opal.OpalObject,))
-    @test hasmethod(opal_session_get, (Opal.OpalObject,))
-    @test hasmethod(opal_session_exists, (Opal.OpalObject,))
-    @test hasmethod(opal_session_running, (Opal.OpalObject,))
-    @test hasmethod(opal_session_delete, (Opal.OpalObject,))
+    @test hasmethod(opal_session, (ObibaOpal.OpalObject,))
+    @test hasmethod(opal_session_get, (ObibaOpal.OpalObject,))
+    @test hasmethod(opal_session_exists, (ObibaOpal.OpalObject,))
+    @test hasmethod(opal_session_running, (ObibaOpal.OpalObject,))
+    @test hasmethod(opal_session_delete, (ObibaOpal.OpalObject,))
 end
 
 @testset "Session Helper Functions" begin
@@ -25,18 +25,18 @@ end
     # so it's tested in integration tests instead
 
     # Test _rmRSession helper exists
-    @test isdefined(Opal, :_rmRSession)
+    @test isdefined(ObibaOpal, :_rmRSession)
 
     # Test _rmOpalSession helper exists
-    @test isdefined(Opal, :_rmOpalSession)
+    @test isdefined(ObibaOpal, :_rmOpalSession)
 
     # Test _getSessions helper exists
-    @test isdefined(Opal, :_getSessions)
+    @test isdefined(ObibaOpal, :_getSessions)
 end
 
 @testset "Session State Management" begin
     # Test OpalObject with session ID
-    opal_with_session = Opal.OpalObject(
+    opal_with_session = ObibaOpal.OpalObject(
         name="test",
         url="https://opal-demo.obiba.org",
         username="admin",
@@ -53,7 +53,7 @@ end
     @test opal_with_session.rid == "r-session-456"
 
     # Test OpalObject without session
-    opal_without_session = Opal.OpalObject(
+    opal_without_session = ObibaOpal.OpalObject(
         name="test",
         url="https://opal-demo.obiba.org",
         username="admin",
@@ -86,7 +86,7 @@ end
 @testset "Session Existence Logic" begin
     # opal_session_exists should return Bool
     # It checks if opal.rid is not nothing
-    opal_with_rid = Opal.OpalObject(
+    opal_with_rid = ObibaOpal.OpalObject(
         name="test",
         url="https://opal-demo.obiba.org",
         username="admin",
@@ -98,7 +98,7 @@ end
         restore=nothing,
     )
 
-    opal_without_rid = Opal.OpalObject(
+    opal_without_rid = ObibaOpal.OpalObject(
         name="test",
         url="https://opal-demo.obiba.org",
         username="admin",
@@ -113,19 +113,19 @@ end
     # Note: opal_session_exists makes a server request
     # We can't fully test it without a server
     # But we can verify the function signature expects the right types
-    @test hasmethod(opal_session_exists, (Opal.OpalObject,))
+    @test hasmethod(opal_session_exists, (ObibaOpal.OpalObject,))
 end
 
 @testset "Session Running Logic" begin
     # opal_session_running should return Bool
     # It checks session status on the server
     # Similar to session_exists, requires server for full test
-    @test hasmethod(opal_session_running, (Opal.OpalObject,))
+    @test hasmethod(opal_session_running, (ObibaOpal.OpalObject,))
 end
 
 @testset "Session Creation Options" begin
     # Test that opal_session accepts wait parameter
-    @test hasmethod(opal_session, (Opal.OpalObject,))
+    @test hasmethod(opal_session, (ObibaOpal.OpalObject,))
 
     # The function signature should allow keyword argument 'wait'
     # This will be fully tested in integration tests

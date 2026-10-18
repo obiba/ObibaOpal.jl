@@ -3,7 +3,7 @@
 # Uses RSRC project for testing
 
 using Test
-using Opal
+using ObibaOpal
 include("../test_helpers.jl")
 
 @testset "Table Exists Check" begin

@@ -2,7 +2,7 @@
 # Requires a live Opal server (set OPAL_TEST_URL to run)
 
 using Test
-using Opal
+using ObibaOpal
 include("../test_helpers.jl")
 
 @testset "Workspace Operations" begin
@@ -24,7 +24,7 @@ include("../test_helpers.jl")
     end
 
     # restore the workspace (Opal 4.5+)
-    if !ismissing(o.version) && Opal._versionCompare(o, "4.5") >= 0
+    if !ismissing(o.version) && ObibaOpal._versionCompare(o, "4.5") >= 0
         opal_workspace_restore(o, wsname)
         @test !isnothing(o.rid)
     end

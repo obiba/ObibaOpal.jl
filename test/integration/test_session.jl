@@ -2,7 +2,7 @@
 # These tests require a live Opal server (set OPAL_TEST_URL to run)
 
 using Test
-using Opal
+using ObibaOpal
 include("../test_helpers.jl")
 
 @testset "Session Creation" begin

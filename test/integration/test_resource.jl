@@ -3,7 +3,7 @@
 # Uses RSRC project for testing
 
 using Test
-using Opal
+using ObibaOpal
 using DataFrames: DataFrame, nrow
 include("../test_helpers.jl")
 

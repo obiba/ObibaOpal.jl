@@ -1,4 +1,4 @@
-module Opal
+module ObibaOpal
 
 using URIs: URI, escapepath, unescapeuri
 using Base64: base64encode

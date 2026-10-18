@@ -1,5 +1,5 @@
-using Opal
-using Opal: OpalObject
+using ObibaOpal
+using ObibaOpal: OpalObject
 using Test
 
 @testset "login" begin

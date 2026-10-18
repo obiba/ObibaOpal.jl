@@ -2,29 +2,29 @@
 # These tests focus on resource-related logic without requiring a server
 
 using Test
-using Opal
+using ObibaOpal
 using JSON
 
 @testset "Resource Function Signatures" begin
     # Test that resource functions exist with correct signatures
-    @test isdefined(Opal, :opal_resources)
-    @test isdefined(Opal, :opal_resource)
-    @test isdefined(Opal, :opal_resource_exists)
-    @test isdefined(Opal, :opal_resource_get)
-    @test isdefined(Opal, :opal_resource_create)
-    @test isdefined(Opal, :opal_resource_extension_create)
-    @test isdefined(Opal, :opal_resource_delete)
+    @test isdefined(ObibaOpal, :opal_resources)
+    @test isdefined(ObibaOpal, :opal_resource)
+    @test isdefined(ObibaOpal, :opal_resource_exists)
+    @test isdefined(ObibaOpal, :opal_resource_get)
+    @test isdefined(ObibaOpal, :opal_resource_create)
+    @test isdefined(ObibaOpal, :opal_resource_extension_create)
+    @test isdefined(ObibaOpal, :opal_resource_delete)
 
     # Test method signatures
-    @test hasmethod(opal_resources, (Opal.OpalObject, String))
-    @test hasmethod(opal_resource, (Opal.OpalObject, String, String))
-    @test hasmethod(opal_resource_exists, (Opal.OpalObject, String, String))
-    @test hasmethod(opal_resource_get, (Opal.OpalObject, String, String))
-    @test hasmethod(opal_resource_create, (Opal.OpalObject, String, String, String))
+    @test hasmethod(opal_resources, (ObibaOpal.OpalObject, String))
+    @test hasmethod(opal_resource, (ObibaOpal.OpalObject, String, String))
+    @test hasmethod(opal_resource_exists, (ObibaOpal.OpalObject, String, String))
+    @test hasmethod(opal_resource_get, (ObibaOpal.OpalObject, String, String))
+    @test hasmethod(opal_resource_create, (ObibaOpal.OpalObject, String, String, String))
     @test hasmethod(
         opal_resource_extension_create,
         (
-            Opal.OpalObject,
+            ObibaOpal.OpalObject,
             AbstractString,
             AbstractString,
             AbstractString,
@@ -32,16 +32,16 @@ using JSON
             Dict{AbstractString,Any},
         ),
     )
-    @test hasmethod(opal_resource_delete, (Opal.OpalObject, String, String))
+    @test hasmethod(opal_resource_delete, (ObibaOpal.OpalObject, String, String))
 end
 
 @testset "Resource List Parameters" begin
     # Test that opal_resources accepts df parameter
-    @test hasmethod(opal_resources, (Opal.OpalObject, String))
+    @test hasmethod(opal_resources, (ObibaOpal.OpalObject, String))
 
     # The df parameter controls whether to return DataFrame or raw response
     # For now, we return raw response regardless
-    opal = Opal.OpalObject(
+    opal = ObibaOpal.OpalObject(
         name="test",
         url="https://opal-demo.obiba.org",
         username="admin",
@@ -59,7 +59,7 @@ end
 
 @testset "Resource Existence Check Logic" begin
     # Test that opal_resource_exists returns Bool
-    @test hasmethod(opal_resource_exists, (Opal.OpalObject, String, String))
+    @test hasmethod(opal_resource_exists, (ObibaOpal.OpalObject, String, String))
 
     # The function uses try-catch to determine existence
     # This will be validated in integration tests
@@ -67,7 +67,7 @@ end
 end
 
 @testset "Resource Creation Logic" begin
-    opal = Opal.OpalObject(
+    opal = ObibaOpal.OpalObject(
         name="test",
         url="https://opal-demo.obiba.org",
         username="admin",
@@ -147,7 +147,7 @@ end
 
 @testset "Resource Deletion Logic" begin
     # Test silent parameter handling
-    @test hasmethod(opal_resource_delete, (Opal.OpalObject, String, String))
+    @test hasmethod(opal_resource_delete, (ObibaOpal.OpalObject, String, String))
 
     # The function should warn when silent=false and resource doesn't exist
     # This will be tested in integration tests
@@ -156,7 +156,7 @@ end
 
 @testset "Resource Get Placeholder" begin
     # opal_resource_get is not fully implemented (requires R session ops)
-    opal = Opal.OpalObject(
+    opal = ObibaOpal.OpalObject(
         name="test",
         url="https://opal-demo.obiba.org",
         username="admin",
@@ -215,7 +215,7 @@ end
 end
 
 @testset "Resource URL Construction" begin
-    opal = Opal.OpalObject(
+    opal = ObibaOpal.OpalObject(
         name="test",
         url="https://opal-demo.obiba.org",
         username="admin",
@@ -228,10 +228,10 @@ end
     )
 
     # Test URL construction for resource list
-    url = Opal._url(opal, "project", "RSRC", "resources")
+    url = ObibaOpal._url(opal, "project", "RSRC", "resources")
     @test occursin("project/RSRC/resources", url)
 
     # Test URL construction for single resource
-    url = Opal._url(opal, "project", "RSRC", "resource", "test_resource")
+    url = ObibaOpal._url(opal, "project", "RSRC", "resource", "test_resource")
     @test occursin("project/RSRC/resource/test_resource", url)
 end

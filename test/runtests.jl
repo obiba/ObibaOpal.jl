@@ -1,7 +1,7 @@
 using SafeTestsets
 using Test
 
-@testset "Opal.jl" begin
+@testset "ObibaOpal.jl" begin
     # Unit Tests - These run without requiring an Opal server
     @testset "Unit Tests" begin
         @safetestset "Utils" begin

@@ -2,16 +2,16 @@
 # These tests focus on function signatures and logic without requiring a server
 
 using Test
-using Opal
+using ObibaOpal
 using DataFrames
 
 @testset "Datasource Operations Logic" begin
-    @test hasmethod(opal_datasources, (Opal.OpalObject,))
-    @test hasmethod(opal_datasource, (Opal.OpalObject, String))
+    @test hasmethod(opal_datasources, (ObibaOpal.OpalObject,))
+    @test hasmethod(opal_datasource, (ObibaOpal.OpalObject, String))
 end
 
 @testset "Datasources DataFrame Columns" begin
-    opal = Opal.OpalObject(
+    opal = ObibaOpal.OpalObject(
         name="test", url="https://opal-demo.obiba.org", username="admin", version=missing
     )
 

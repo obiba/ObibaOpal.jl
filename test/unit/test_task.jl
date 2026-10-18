@@ -2,13 +2,13 @@
 # These tests focus on function signatures without requiring a server
 
 using Test
-using Opal
+using ObibaOpal
 
 @testset "Task Operations Logic" begin
-    @test hasmethod(opal_tasks, (Opal.OpalObject,))
-    @test hasmethod(opal_task, (Opal.OpalObject, String))
-    @test hasmethod(opal_task_cancel, (Opal.OpalObject, String))
-    @test hasmethod(opal_task_wait, (Opal.OpalObject, String))
+    @test hasmethod(opal_tasks, (ObibaOpal.OpalObject,))
+    @test hasmethod(opal_task, (ObibaOpal.OpalObject, String))
+    @test hasmethod(opal_task_cancel, (ObibaOpal.OpalObject, String))
+    @test hasmethod(opal_task_wait, (ObibaOpal.OpalObject, String))
 end
 
 @testset "Task Wait Keyword Regression" begin
